@@ -232,6 +232,18 @@ module.exports = gql`
 			limit: Int = 14
 		): [View!]
 		"""
+		Amount of views per page grouped by day, month or year.
+		"""
+		viewsPerPage(
+			page: String!,
+			interval: Interval!,
+			type: ViewType!,
+			"""
+			Number of entries to return. Starts with the current day, month or year depending on the chosen interval.
+			"""
+			limit: Int = 14
+		): [View!]
+		"""
 		Pages viewed by your visitors.
 		"""
 		pages(

@@ -1,6 +1,7 @@
 'use strict'
 
 const views = require('../database/views')
+const viewsPerPage = require('../database/viewsPerPage')
 const pages = require('../database/pages')
 const referrers = require('../database/referrers')
 const durations = require('../database/durations')
@@ -19,6 +20,12 @@ module.exports = {
 
 			const ids = await domainIds(domain)
 			return views.get(ids, type, interval, limit, dateDetails)
+
+		}),
+		viewsPerPage: pipe(requireAuth, async (domain, { page, type, interval, limit }, { dateDetails }) => {
+
+			const ids = await domainIds(domain)
+			return viewsPerPage.get(ids, page, type, interval, limit, dateDetails)
 
 		}),
 		pages: pipe(requireAuth, async (domain, { sorting, range, limit }, { dateDetails }) => {
